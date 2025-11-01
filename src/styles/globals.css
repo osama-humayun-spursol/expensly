@@ -1,44 +1,46 @@
-@custom-variant dark (&:is(.dark *));
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-:root {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;900&display=swap');
+
+:::root {
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
+  --background: #f0fbf6;
+  --foreground: #064e3b;
   --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
+  --card-foreground: #064e3b;
+  --popover: #e6faf0;
+  --popover-foreground: #064e3b;
+  --primary: #16a34a;
+  --primary-foreground: #ffffff;
+  --secondary: #34d399;
+  --secondary-foreground: #064e3b;
+  --muted: #dff6e8;
+  --muted-foreground: #0f766e;
+  --accent: #bbf7d0;
+  --accent-foreground: #064e3b;
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
+  --border: rgba(6, 78, 59, 0.08);
   --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
+  --input-background: #f3faf6;
+  --switch-background: #86efac;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
+  --ring: #34d399;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --sidebar: #f7fff9;
+  --sidebar-foreground: #064e3b;
+  --sidebar-primary: #065f46;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ecfdf5;
+  --sidebar-accent-foreground: #064e3b;
+  --sidebar-border: rgba(6,78,59,0.06);
+  --sidebar-ring: #34d399;
 }
 
 .dark {
@@ -71,7 +73,7 @@
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.269 0 0);
@@ -126,6 +128,7 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Poppins', var(--default-font-family);
   }
 }
 
@@ -133,55 +136,14 @@
  * Base typography. This is not applied to elements which have an ancestor with a Tailwind text class.
  */
 @layer base {
-  :where(:not(:has([class*=" text-"]), :not(:has([class^="text-"])))) {
-    h1 {
-      font-size: var(--text-2xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h2 {
-      font-size: var(--text-xl);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h3 {
-      font-size: var(--text-lg);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    h4 {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    p {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-
-    label {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    button {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-medium);
-      line-height: 1.5;
-    }
-
-    input {
-      font-size: var(--text-base);
-      font-weight: var(--font-weight-normal);
-      line-height: 1.5;
-    }
-  }
+  h1 { font-size: var(--text-2xl); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  h2 { font-size: var(--text-xl); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  h3 { font-size: var(--text-lg); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  h4 { font-size: var(--text-base); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  p { font-size: var(--text-base); font-weight: var(--font-weight-normal); line-height: 1.5; }
+  label { font-size: var(--text-base); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  button { font-size: var(--text-base); font-weight: var(--font-weight-medium); line-height: 1.5; }
+  input { font-size: var(--text-base); font-weight: var(--font-weight-normal); line-height: 1.5; }
 }
 
 html {
@@ -212,4 +174,31 @@ html {
 
 *::-webkit-scrollbar-thumb:hover {
   background-color: #60a5fa;
+}
+
+/* Logo SVG styles */
+.logo-wordmark {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 900;
+  /* Significantly larger than h1 to emphasize the brand */
+  font-size: calc(var(--text-2xl, 36px) + 24px);
+  dominant-baseline: hanging;
+  letter-spacing: 0;
+}
+
+.logo-urdu {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 900;
+  /* Make Urdu word larger to match prominence of the wordmark */
+  font-size: calc(var(--text-2xl, 36px) + 8px);
+  dominant-baseline: hanging;
+}
+
+.logo-tagline {
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-weight: 500;
+  /* Slightly larger tagline for better readability */
+  font-size: 22px;
+  fill-opacity: 0.85;
+  dominant-baseline: auto;
 }

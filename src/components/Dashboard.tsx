@@ -1,5 +1,6 @@
 import { useState, useMemo } from 'react';
 import { Button } from './ui/button';
+import Logo from './ui/Logo';
 import { Card } from './ui/card';
 import { Badge } from './ui/badge';
 import { Checkbox } from './ui/checkbox';
@@ -53,11 +54,11 @@ const expenseTypeColors = {
 };
 
 const chartColors = {
-  food: '#f97316',
-  utility: '#eab308',
-  shopping: '#ec4899',
-  travel: '#3b82f6',
-  gifts: '#a855f7',
+  food: '#16a34a',
+  utility: '#34d399',
+  shopping: '#86efac',
+  travel: '#065f46',
+  gifts: '#bbf7d0',
   home: '#22c55e',
 };
 
@@ -220,7 +221,7 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
   }, [filteredExpenses]);
 
   // Prepare data for category pie chart
-  const fallbackColors = ['#f97316','#eab308','#ec4899','#3b82f6','#a855f7','#22c55e','#94a3b8','#fb7185'];
+  const fallbackColors = ['#16a34a','#34d399','#86efac','#0f766e','#22c55e','#bbf7d0','#065f46','#064e3b'];
 
   function generateColor(key: string) {
     let hash = 0;
@@ -240,21 +241,20 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
   }, [expensesByType]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="min-h-screen" style={{background: 'linear-gradient(135deg, var(--background), color-mix(in srgb, var(--background) 80%, #ffffff))'}}>
       {/* Header */}
-      <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 text-white shadow-lg">
+      <div className="text-white shadow-lg" style={{background: 'linear-gradient(90deg, var(--primary), var(--secondary))'}}>
         <div className="max-w-7xl mx-auto px-4 py-6">
           <div className="flex items-center justify-between">
             <div>
               <div className="flex items-center gap-2 mb-1">
-                <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
-                  <span className="text-xl">📊</span>
+                <div className="text-white">
+                  <Logo width={200} height={56} />
                 </div>
-                <h1 className="text-white">Kharch</h1>
               </div>
-              <p className="text-indigo-100">Welcome back, {user.name}!</p>
+              <p className="text-primary-foreground">Welcome back, {user.name}!</p>
             </div>
-            <Button 
+            <Button
               onClick={onSignOut}
               variant="outline"
               className="bg-white/10 border-white/20 text-white hover:bg-white/20"
@@ -271,22 +271,22 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
         <Card className="p-4 mb-6 bg-white shadow-lg border-0 relative overflow-visible">
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <div className="flex items-center gap-2">
-              <CalendarIcon className="w-5 h-5 text-indigo-600" />
+              <CalendarIcon className="w-5 h-5 text-primary" />
               <span className="text-gray-700">Filter by:</span>
             </div>
             
             <Tabs value={filterType} onValueChange={(value) => setFilterType(value as typeof filterType)} className="flex-1">
               <TabsList className="bg-gray-100">
-                <TabsTrigger value="day" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+                <TabsTrigger value="day" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   Day
                 </TabsTrigger>
-                <TabsTrigger value="week" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+                <TabsTrigger value="week" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   Week
                 </TabsTrigger>
-                <TabsTrigger value="month" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+                <TabsTrigger value="month" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   Month
                 </TabsTrigger>
-                <TabsTrigger value="custom" className="data-[state=active]:bg-indigo-600 data-[state=active]:text-white">
+                <TabsTrigger value="custom" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
                   Custom
                 </TabsTrigger>
               </TabsList>
@@ -297,14 +297,15 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                 <div className="inline-flex flex-col">
                     <Button
                       variant="outline"
-                      className="justify-start text-left border-indigo-200 hover:border-indigo-400"
+                      className="justify-start text-left border"
+                      style={{ borderColor: 'rgba(22,163,74,0.12)' }}
                       onClick={() => setIsStartDateOpen((prev) => !prev)}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4 text-indigo-600" />
+                      <CalendarIcon className="mr-2 h-4 w-4 text-primary" />
                       {customStartDate ? format(customStartDate, 'PP') : 'Start Date'}
                     </Button>
                     {isStartDateOpen && (
-                      <div className="mt-2 p-3 bg-white border border-indigo-200 rounded-lg shadow-sm">
+                      <div className="mt-2 p-3 bg-white border rounded-lg shadow-sm" style={{borderColor: 'rgba(22,163,74,0.08)'}}>
                         <div className="flex justify-center py-4">
                           <DatePicker
                               selected={customStartDate ?? null}
@@ -324,14 +325,15 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                 <div className="inline-flex flex-col">
                     <Button
                       variant="outline"
-                      className="justify-start text-left border-indigo-200 hover:border-indigo-400"
+                      className="justify-start text-left border"
+                      style={{ borderColor: 'rgba(22,163,74,0.12)' }}
                       onClick={() => setIsEndDateOpen((prev) => !prev)}
                     >
-                      <CalendarIcon className="mr-2 h-4 w-4 text-indigo-600" />
+                      <CalendarIcon className="mr-2 h-4 w-4 text-primary" />
                       {customEndDate ? format(customEndDate, 'PP') : 'End Date'}
                     </Button>
                     {isEndDateOpen && (
-                      <div className="mt-2 p-3 bg-white border border-indigo-200 rounded-lg shadow-sm">
+                      <div className="mt-2 p-3 bg-white border rounded-lg shadow-sm" style={{borderColor: 'rgba(22,163,74,0.08)'}}>
                         <div className="flex justify-center py-4">
                           <DatePicker
                               selected={customEndDate ?? null}
@@ -352,10 +354,10 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
 
         {/* Summary Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <Card className="p-6 bg-gradient-to-br from-indigo-500 to-indigo-600 shadow-lg border-0">
+          <Card className="p-6 shadow-lg border-0" style={{background: 'linear-gradient(135deg, var(--primary), var(--secondary))'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-indigo-100 mb-2">Total Expenses</p>
+                <p className="text-primary-foreground mb-2">Total Expenses</p>
                 <p className="text-white">{formatCurrency(totalExpense)}</p>
               </div>
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -363,10 +365,10 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
               </div>
             </div>
           </Card>
-          <Card className="p-6 bg-gradient-to-br from-purple-500 to-purple-600 shadow-lg border-0">
+          <Card className="p-6 shadow-lg border-0" style={{background: 'linear-gradient(135deg, color-mix(in srgb, var(--primary) 60%, #065f46 40%), var(--primary))'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-purple-100 mb-2">Number of Expenses</p>
+                <p className="text-primary-foreground mb-2">Number of Expenses</p>
                 <p className="text-white">{filteredExpenses.length}</p>
               </div>
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -374,10 +376,10 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
               </div>
             </div>
           </Card>
-          <Card className="p-6 bg-gradient-to-br from-pink-500 to-pink-600 shadow-lg border-0">
+          <Card className="p-6 shadow-lg border-0" style={{background: 'linear-gradient(135deg, var(--secondary), var(--accent))'}}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-pink-100 mb-2">Categories</p>
+                <p className="text-primary-foreground mb-2">Categories</p>
                 <p className="text-white">{Object.keys(expensesByType).length}</p>
               </div>
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
@@ -415,12 +417,12 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                     }}
                     formatter={(value: number) => [formatCurrency(value), 'Amount']}
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey="amount" 
-                    stroke="#4f46e5" 
+                  <Line
+                    type="monotone"
+                    dataKey="amount"
+                    stroke="var(--primary)"
                     strokeWidth={3}
-                    dot={{ fill: '#4f46e5', r: 4 }}
+                    dot={{ fill: 'var(--primary)', r: 4 }}
                     activeDot={{ r: 6 }}
                   />
                 </LineChart>
@@ -499,7 +501,7 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                   )}
                   <Button
                     onClick={() => setIsAddDialogOpen(true)}
-                    className="bg-indigo-600 hover:bg-indigo-700"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
                     size="sm"
                   >
                     <Plus className="w-4 h-4 mr-2" />
@@ -515,7 +517,8 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                     <Button
                       onClick={() => setIsAddDialogOpen(true)}
                       variant="outline"
-                      className="border-indigo-600 text-indigo-600 hover:bg-indigo-50"
+                      className="border text-primary text-primary-foreground"
+                      style={{ borderColor: 'var(--primary)' }}
                     >
                       <Plus className="w-4 h-4 mr-2" />
                       Add Your First Expense

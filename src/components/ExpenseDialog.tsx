@@ -271,14 +271,14 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
-              className="mt-1"
+              className="mt-1 h-12 rounded-xl border-gray-200 px-4"
             />
           </div>
 
           <div>
             <Label htmlFor="type">Expense Type</Label>
             <Select value={type} onValueChange={(value) => setType(value as Expense['type'])}>
-              <SelectTrigger className="mt-1">
+              <SelectTrigger className="mt-1 h-12 rounded-xl border-gray-200 px-4">
                 <SelectValue placeholder="Select type" />
               </SelectTrigger>
               <SelectContent>
@@ -297,7 +297,7 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
                 placeholder="e.g. subscriptions"
                 value={customCategory}
                 onChange={(e) => setCustomCategory(e.target.value)}
-                className="mt-1"
+                className="mt-1 h-12 rounded-xl border-gray-200 px-4"
               />
             </div>
             { (type === 'travel' || customCategory.trim().toLowerCase() === 'travel') && (
@@ -318,7 +318,7 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
               value={amount}
               onChange={(e) => setAmount(e.target.value)}
               required
-              className="mt-1"
+              className="mt-1 h-12 rounded-xl border-gray-200 px-4"
             />
           </div>
 
@@ -330,7 +330,7 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
               value={expenseDate}
               onChange={(e) => setExpenseDate(e.target.value)}
               required
-              className="mt-1"
+              className="mt-1 h-12 rounded-xl border-gray-200 px-4"
             />
           </div>
 
@@ -370,7 +370,7 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
             </Button>
             <Button
               type="submit"
-              className="flex-1 bg-indigo-600 hover:bg-indigo-700"
+              className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
             >
               {initialData ? 'Update' : 'Add'} Expense
             </Button>

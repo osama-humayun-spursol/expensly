@@ -240,19 +240,19 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-50">
       {currentScreen === 'signin' && (
-        <SignIn 
+        <SignIn
           onSignIn={handleSignIn}
           onSwitchToSignUp={() => setCurrentScreen('signup')}
         />
       )}
       {currentScreen === 'signup' && (
-        <SignUp 
+        <SignUp
           onSignUp={handleSignUp}
           onSwitchToSignIn={() => setCurrentScreen('signin')}
         />
       )}
       {currentScreen === 'dashboard' && currentUser && (
-        <Dashboard 
+        <Dashboard
           user={currentUser}
           expenses={expenses}
           onSignOut={handleSignOut}
