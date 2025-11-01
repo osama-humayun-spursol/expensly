@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
@@ -7,7 +7,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '.
 import { Expense } from '../App';
 import { TravelIconSelector, TravelIconKey } from './TravelIconSelector';
 import { supabase } from '../lib/supabaseClient';
-import { useRef } from 'react';
 import { toast } from 'sonner';
 
 type OCRResult = {

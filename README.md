@@ -1,11 +1,20 @@
+# Kharch
 
-  # Expense Management App
+**Kharch — Manage. Track. Save.**
 
-  This is a code bundle for Expense Management App. The original project is available at https://www.figma.com/design/x5mLJCIuTGsAsWhMhA3Yb5/Expense-Management-App.
+A modern expense tracking application that helps you manage your finances effortlessly.
 
-  ## Running the code
+## Features
 
-  Run `npm i` to install the dependencies.
+- 📊 Track your expenses with detailed categorization
+- 📸 OCR-powered receipt scanning
+- 📈 Visual analytics and insights
+- 🔒 Secure authentication with Supabase
+- 💰 Multi-category support (Food, Travel, Shopping, Utilities & more)
 
-  Run `npm run dev` to start the development server.
+## Running the code
+
+Run `npm i` to install the dependencies.
+
+Run `npm run dev` to start the development server.
   
