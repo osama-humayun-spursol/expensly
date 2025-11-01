@@ -37,12 +37,12 @@ export function SignIn({ onSignIn, onSwitchToSignUp }: SignInProps) {
               <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
                 <span className="text-xl">📊</span>
               </div>
-              <h1 className="text-white">ExpenseLy</h1>
+              <h1 className="text-white">Kharch</h1>
             </div>
             <div className="flex justify-center">
-              <ImageWithFallback 
+              <ImageWithFallback
                 src={exampleImage}
-                alt="ExpenseLy Illustration"
+                alt="Kharch Illustration"
                 className="w-64 h-48 object-contain"
               />
             </div>

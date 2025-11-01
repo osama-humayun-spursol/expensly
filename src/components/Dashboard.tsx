@@ -250,7 +250,7 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                 <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center">
                   <span className="text-xl">📊</span>
                 </div>
-                <h1 className="text-white">ExpenseLy</h1>
+                <h1 className="text-white">Kharch</h1>
               </div>
               <p className="text-indigo-100">Welcome back, {user.name}!</p>
             </div>
