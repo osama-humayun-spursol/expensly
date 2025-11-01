@@ -277,16 +277,28 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
             
             <Tabs value={filterType} onValueChange={(value) => setFilterType(value as typeof filterType)} className="flex-1">
               <TabsList className="bg-gray-100">
-                <TabsTrigger value="day" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger
+                  value="day"
+                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                >
                   Day
                 </TabsTrigger>
-                <TabsTrigger value="week" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger
+                  value="week"
+                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                >
                   Week
                 </TabsTrigger>
-                <TabsTrigger value="month" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger
+                  value="month"
+                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                >
                   Month
                 </TabsTrigger>
-                <TabsTrigger value="custom" className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground">
+                <TabsTrigger
+                  value="custom"
+                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                >
                   Custom
                 </TabsTrigger>
               </TabsList>
