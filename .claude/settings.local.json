@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "Bash(npm uninstall:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nReplace Tesseract.js with OCR.space API for receipt scanning\n\n- Remove Tesseract.js dependency (heavy client-side processing)\n- Integrate OCR.space API for faster and more accurate OCR\n- Add timeout handling for OCR requests\n- Simplify error handling and improve user feedback\n- Add OCR API key to environment variables\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []

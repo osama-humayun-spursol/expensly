@@ -8,6 +8,7 @@ import { Expense } from '../App';
 import { TravelIconSelector, TravelIconKey } from './TravelIconSelector';
 import { supabase } from '../lib/supabaseClient';
 import { useRef } from 'react';
+import { toast } from 'sonner';
 
 type OCRResult = {
   text: string;
@@ -47,7 +48,8 @@ async function runOCRWithOCRSpace(file: File): Promise<OCRResult> {
     const result = await response.json();
 
     if (result.OCRExitCode !== 1 || !result.ParsedResults || result.ParsedResults.length === 0) {
-      throw new Error('OCR failed or no text detected');
+      const errorMessage = result.ErrorMessage?.[0] || 'OCR failed or no text detected';
+      throw new Error(errorMessage);
     }
 
     const text = result.ParsedResults[0].ParsedText || '';
@@ -198,6 +200,12 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
       // Use OCR.space API directly
       const result = await runOCRWithOCRSpace(fileToUse);
 
+      if (result.amount || result.name) {
+        toast.success('Receipt scanned successfully!');
+      } else {
+        toast.info('Receipt scanned but no amount/name found. Please enter manually.');
+      }
+
       if (result.amount) setAmount(result.amount.toString());
       if (result.name) setName(result.name);
 
@@ -205,8 +213,22 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
       const url = URL.createObjectURL(fileToUse);
       setOcrPreviewUrl(url);
     } catch (error) {
-      console.error('OCR error:', error);
-      alert('Failed to scan receipt. Please try again or enter details manually.');
+      console.error('OCR error details:', error);
+
+      // User-friendly error messages
+      let errorMessage = 'Unable to scan receipt';
+
+      if (error instanceof Error) {
+        if (error.message.includes('timeout')) {
+          errorMessage = 'Scan took too long. Please try a smaller image';
+        } else if (error.message.includes('network') || error.message.includes('Failed to fetch')) {
+          errorMessage = 'Network error. Check your internet connection';
+        } else if (error.message.includes('API error')) {
+          errorMessage = 'OCR service unavailable. Try again later';
+        }
+      }
+
+      toast.error(errorMessage);
     } finally {
       setOcrRunning(false);
     }
