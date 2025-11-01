@@ -28,12 +28,25 @@ export default function App() {
 
   useEffect(() => {
     checkUser();
+
+    const ensureProfile = async (userObj: any) => {
+      if (!userObj?.id) return;
+      try {
+        await supabase.from('profiles').upsert({ id: userObj.id, email: userObj.email || null, name: userObj.user_metadata?.name || null, mobile: userObj.user_metadata?.mobile || null }, { onConflict: ['id'] });
+      } catch (e) {
+        console.warn('Failed ensuring profile row:', e);
+      }
+    };
+
     const { data: authListener } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session?.user) {
-        setCurrentUser({ 
-          email: session.user.email || '', 
-          name: session.user.user_metadata?.name || session.user.email?.split('@')[0] || 'User' 
+        const u = session.user;
+        setCurrentUser({
+          email: u.email || '',
+          name: u.user_metadata?.name || u.email?.split('@')[0] || 'User'
         });
+        // ensure profile exists for this user
+        ensureProfile(u).catch(() => {});
         setCurrentScreen('dashboard');
         fetchExpenses();
       } else {
@@ -112,6 +125,17 @@ export default function App() {
       });
 
       if (error) throw error;
+
+      // If a user object is returned immediately, create a profile row
+      if (data?.user?.id) {
+        const userId = data.user.id;
+        try {
+          const { error: pe } = await supabase.from('profiles').upsert({ id: userId, email, name, mobile }, { onConflict: ['id'] });
+          if (pe) console.warn('Profile upsert warning:', pe.message || pe);
+        } catch (e) {
+          console.error('Error creating profile row:', e);
+        }
+      }
 
       toast.success('Account created successfully! Please check your email for verification.');
     } catch (error: any) {
