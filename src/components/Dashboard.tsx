@@ -279,25 +279,25 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
               <TabsList className="bg-gray-100">
                 <TabsTrigger
                   value="day"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
                 >
                   Day
                 </TabsTrigger>
                 <TabsTrigger
                   value="week"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
                 >
                   Week
                 </TabsTrigger>
                 <TabsTrigger
                   value="month"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
                 >
                   Month
                 </TabsTrigger>
                 <TabsTrigger
                   value="custom"
-                  className="data-[state=active]:bg-green-600 data-[state=active]:text-white transition-all"
+                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
                 >
                   Custom
                 </TabsTrigger>
