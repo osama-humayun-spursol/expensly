@@ -279,25 +279,45 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
               <TabsList className="bg-gray-100">
                 <TabsTrigger
                   value="day"
-                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
+                  style={{
+                    backgroundColor: filterType === 'day' ? '#16a34a' : undefined,
+                    color: filterType === 'day' ? 'white' : undefined,
+                    borderColor: filterType === 'day' ? '#16a34a' : undefined,
+                  }}
+                  className="transition-all"
                 >
                   Day
                 </TabsTrigger>
                 <TabsTrigger
                   value="week"
-                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
+                  style={{
+                    backgroundColor: filterType === 'week' ? '#16a34a' : undefined,
+                    color: filterType === 'week' ? 'white' : undefined,
+                    borderColor: filterType === 'week' ? '#16a34a' : undefined,
+                  }}
+                  className="transition-all"
                 >
                   Week
                 </TabsTrigger>
                 <TabsTrigger
                   value="month"
-                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
+                  style={{
+                    backgroundColor: filterType === 'month' ? '#16a34a' : undefined,
+                    color: filterType === 'month' ? 'white' : undefined,
+                    borderColor: filterType === 'month' ? '#16a34a' : undefined,
+                  }}
+                  className="transition-all"
                 >
                   Month
                 </TabsTrigger>
                 <TabsTrigger
                   value="custom"
-                  className="data-[state=active]:!bg-green-600 data-[state=active]:!text-white data-[state=active]:!border-green-600 transition-all"
+                  style={{
+                    backgroundColor: filterType === 'custom' ? '#16a34a' : undefined,
+                    color: filterType === 'custom' ? 'white' : undefined,
+                    borderColor: filterType === 'custom' ? '#16a34a' : undefined,
+                  }}
+                  className="transition-all"
                 >
                   Custom
                 </TabsTrigger>
