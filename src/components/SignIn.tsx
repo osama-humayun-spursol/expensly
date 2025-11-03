@@ -30,12 +30,12 @@ export function SignIn({ onSignIn, onSwitchToSignUp, inline }: SignInProps & { i
   };
 
   const card = (
-    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden flex" style={{minHeight: '380px'}}>
-      <div className="p-8 flex flex-col justify-between text-white" style={{borderTopLeftRadius: '1.5rem', borderBottomLeftRadius: '1.5rem', flexBasis: '60%', background: 'linear-gradient(135deg, #16a34a 0%, #34d399 45%, #bbf7d0 100%)'}}>{/* left panel */}
+    <div className="bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col sm:flex-row" style={{minHeight: '380px'}}>
+      {/* Left panel - Hidden on mobile, visible on large screens */}
+      <div className="hidden lg:block p-8 lg:flex lg:flex-col lg:justify-between text-white lg:w-[60%]" style={{background: 'linear-gradient(135deg, #16a34a 0%, #34d399 45%, #bbf7d0 100%)'}}>
         <div>
           <div className="flex items-center gap-3 mb-6">
             <div className="flex items-center">
-              {/* Logo SVG: inherits currentColor; use text-white on parent to make it white */}
               <div className="text-white">
                 <Logo width={200} height={56} />
               </div>
@@ -54,7 +54,8 @@ export function SignIn({ onSignIn, onSwitchToSignUp, inline }: SignInProps & { i
         </div>
       </div>
 
-      <div className="p-8 bg-white flex flex-col justify-center" style={{borderTopRightRadius: '1.5rem', borderBottomRightRadius: '1.5rem', flexBasis: '40%'}}>{/* right panel */}
+      {/* Right panel - Form */}
+      <div className="p-6 sm:p-8 bg-white flex flex-col justify-center w-full lg:w-[40%]">
         <h2 className="text-center text-gray-800 mb-6">Sign in</h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -119,8 +120,8 @@ export function SignIn({ onSignIn, onSwitchToSignUp, inline }: SignInProps & { i
   if (inline) return card;
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ background: 'linear-gradient(135deg, #064e3b 0%, #013826 100%)' }}>
-      <div style={{ width: '55%', margin: '0 auto' }}>
+    <div className="min-h-screen flex items-center justify-center p-0 sm:p-4" style={{ background: 'linear-gradient(135deg, #064e3b 0%, #013826 100%)' }}>
+      <div className="max-w-[990px] mx-auto">
         {card}
       </div>
     </div>

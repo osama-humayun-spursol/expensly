@@ -255,25 +255,28 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
-        <DialogHeader>
-          <DialogTitle>{title}</DialogTitle>
-          <DialogDescription>
-            {initialData ? 'Update the expense details below.' : 'Fill in the details to add a new expense.'}
-          </DialogDescription>
-        </DialogHeader>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <Label htmlFor="name">Expense Name</Label>
-            <Input
-              id="name"
-              placeholder="Enter expense name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              required
-              className="mt-1 h-12 rounded-xl border-gray-200 px-4"
-            />
-          </div>
+      <DialogContent className="sm:max-w-md max-h-[90vh] flex flex-col p-0">
+        <div className="px-6 pt-6">
+          <DialogHeader>
+            <DialogTitle>{title}</DialogTitle>
+            <DialogDescription>
+              {initialData ? 'Update the expense details below.' : 'Fill in the details to add a new expense.'}
+            </DialogDescription>
+          </DialogHeader>
+        </div>
+        <form onSubmit={handleSubmit} className="flex flex-col flex-1 min-h-0">
+          <div className="overflow-y-auto px-6 py-4 space-y-4" style={{ maxHeight: '50vh' }}>
+            <div>
+              <Label htmlFor="name">Expense Name</Label>
+              <Input
+                id="name"
+                placeholder="Enter expense name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+                className="mt-1 h-12 rounded-xl border-gray-200 px-4"
+              />
+            </div>
 
           <div>
             <Label htmlFor="type">Expense Type</Label>
@@ -334,7 +337,7 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
             />
           </div>
 
-          <div className="mt-3">
+          <div>
             <Label>Receipt (optional)</Label>
             <div className="flex flex-wrap items-center gap-2 mt-2 min-w-0">
               <input
@@ -344,22 +347,27 @@ export function ExpenseDialog({ open, onOpenChange, onSubmit, title, initialData
                 onChange={(e) => handleReceiptChange(e.target.files ? e.target.files[0] : undefined)}
                 className="hidden"
               />
-              <Button type="button" variant="outline" onClick={() => inputRef.current?.click()} className="px-3">
+              <Button type="button" variant="outline" onClick={() => inputRef.current?.click()} className="flex-shrink-0">
                 Choose File
               </Button>
-              <span className="text-sm text-gray-600 truncate max-w-[50%] min-w-0">{receiptFile ? receiptFile.name : 'No file chosen'}</span>
-              <div className="ml-auto">
-                <Button type="button" onClick={handleScanReceipt} disabled={!receiptFile || ocrRunning}>
+              {receiptFile && (
+                <span className="text-sm text-gray-600 truncate flex-1 min-w-0">{receiptFile.name}</span>
+              )}
+              {receiptFile && (
+                <Button type="button" onClick={handleScanReceipt} disabled={ocrRunning} className="flex-shrink-0">
                   {ocrRunning ? 'Scanning...' : 'Scan Receipt'}
                 </Button>
-              </div>
+              )}
             </div>
             {ocrPreviewUrl && (
-              <img src={ocrPreviewUrl} alt="receipt preview" className="scanimge mt-3 max-h-40 max-w-full object-contain rounded-md border" />
+              <div className="mt-3 max-h-64 overflow-y-auto border rounded-md bg-gray-50">
+                <img src={ocrPreviewUrl} alt="receipt preview" className="w-full h-auto object-contain" />
+              </div>
             )}
           </div>
+          </div>
 
-          <div className="flex gap-3 pt-4">
+          <div className="flex gap-3 px-6 py-4 border-t bg-white">
             <Button
               type="button"
               variant="outline"

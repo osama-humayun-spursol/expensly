@@ -424,7 +424,7 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
         {/* Main Content: Charts on Left, Expenses on Right */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Left Column - Charts */}
-          <div className="space-y-6 flex flex-col">
+          <div className="space-y-6 flex flex-col dashboard-charts">
             {/* Spending Trend Chart */}
             <Card className="p-6 bg-white shadow-lg border-0 flex-1">
               <h3 className="text-gray-800 mb-2">Spending Trend</h3>
@@ -501,10 +501,10 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
           </div>
 
           {/* Right Column - Expenses List */}
-          <div className="flex flex-col">
+          <div className="flex flex-col dashboard-expenses">
             <Card className="p-6 bg-white shadow-lg border-0 flex flex-col h-full">
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center gap-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+                <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
                   {filteredExpenses.length > 0 && (
                     <Checkbox
                       checked={selectedExpenseIds.size === filteredExpenses.length && filteredExpenses.length > 0}
@@ -519,25 +519,25 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                     </span>
                   )}
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-2 flex-wrap">
                   {selectedExpenseIds.size > 0 && (
                     <Button
                       onClick={handleBulkDelete}
                       variant="outline"
-                      className="border-red-600 text-red-600 hover:bg-red-50"
+                      className="border-red-600 text-red-600 hover:bg-red-50 flex-shrink-0"
                       size="sm"
                     >
-                      <Trash2 className="w-4 h-4 mr-2" />
-                      Delete Selected
+                      <Trash2 className="w-4 h-4 sm:mr-2" />
+                      <span className="hidden sm:inline">Delete Selected</span>
                     </Button>
                   )}
                   <Button
                     onClick={() => setIsAddDialogOpen(true)}
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground"
+                    className="bg-primary hover:bg-primary/90 text-primary-foreground flex-shrink-0"
                     size="sm"
                   >
-                    <Plus className="w-4 h-4 mr-2" />
-                    Add Expense
+                    <Plus className="w-4 h-4 sm:mr-2" />
+                    <span className="hidden sm:inline">Add Expense</span>
                   </Button>
                 </div>
               </div>
@@ -574,20 +574,21 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                     const colorClass = expenseTypeColors[expense.type] || 'bg-gray-100 text-gray-700';
 
                     return (
-                      <div key={expense.id} className="p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-3 flex-1">
+                      <div key={expense.id} className="p-3 sm:p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-3">
+                          <div className="flex items-center gap-3 flex-1 min-w-0">
                             <Checkbox
                               checked={selectedExpenseIds.has(expense.id)}
                               onCheckedChange={() => toggleSelectExpense(expense.id)}
                               aria-label={`Select ${expense.name}`}
+                              className="flex-shrink-0"
                             />
                             <div className={`w-10 h-10 rounded-full ${colorClass} flex items-center justify-center flex-shrink-0`}>
                               {iconElement}
                             </div>
                             <div className="flex-1 min-w-0">
                               <h4 className="text-gray-800 truncate">{expense.name}</h4>
-                              <div className="flex items-center gap-2 mt-1">
+                              <div className="flex items-center gap-2 mt-1 flex-wrap">
                                 <Badge variant="secondary" className={`${colorClass} text-xs`}>
                                   {expense.type}
                                 </Badge>
@@ -597,9 +598,9 @@ export function Dashboard({ user, expenses, onSignOut, onAddExpense, onEditExpen
                               </div>
                             </div>
                           </div>
-                          <div className="flex items-center gap-3 ml-4">
-                            <p className="text-gray-900 whitespace-nowrap">{formatCurrency(expense.amount)}</p>
-                            <div className="flex gap-1">
+                          <div className="flex items-center justify-between sm:justify-end gap-3 sm:ml-4">
+                            <p className="text-gray-900 font-semibold whitespace-nowrap">{formatCurrency(expense.amount)}</p>
+                            <div className="flex gap-1 flex-shrink-0">
                               <Button
                                 onClick={() => handleEdit(expense)}
                                 variant="ghost"

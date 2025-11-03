@@ -2734,3 +2734,49 @@ html {
   max-height: 35vh;
   height: auto;
 }
+
+/* Custom scrollbar styling - Light green theme */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #86efac #f0f9ff;
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f0f9ff;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #34d399;
+}
+
+/* Dashboard layout order - Mobile first, expenses list first */
+.dashboard-charts {
+  order: 2;
+}
+
+.dashboard-expenses {
+  order: 1;
+}
+
+/* Desktop: Charts first, expenses second */
+@media (min-width: 1024px) {
+  .dashboard-charts {
+    order: 1;
+  }
+
+  .dashboard-expenses {
+    order: 2;
+  }
+}
